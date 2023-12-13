@@ -1,3 +1,5 @@
+import { isNotNumber } from "./utils";
+
 interface Result {
     periodLength: number;
     trainingDays: number;
@@ -7,6 +9,26 @@ interface Result {
     target: number;
     average: number;
 }
+
+interface ExcParams {
+    input: number[];
+    target: number;
+}
+
+const parseArguments = (args: string[]): ExcParams => {
+    if (args.length < 3) throw new Error("Not enough arguments");
+
+    const allValuesAreNumbers: boolean = args.slice(2).every((value) => !isNotNumber(value));
+
+    if (allValuesAreNumbers) {
+        return {
+            target: Number(args[2]),
+            input: args.slice(3).map((value) => Number(value)),
+        };
+    } else {
+        throw new Error("Provided values were not numbers!");
+    }
+};
 
 const calculateExercises = (daily_exercise_hours: number[], target: number): Result => {
     const ratings = daily_exercise_hours.map((value) => {
@@ -41,4 +63,13 @@ const calculateExercises = (daily_exercise_hours: number[], target: number): Res
     return result;
 };
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+    const { input, target } = parseArguments(process.argv);
+    console.log(calculateExercises(input, target));
+} catch (error: unknown) {
+    let errorMessage = "Something bad happened.";
+    if (error instanceof Error) {
+        errorMessage += " Error: " + error.message;
+    }
+    console.log(errorMessage);
+}
