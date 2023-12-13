@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "FS TypeScript",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
+    "calculateBmi": "ts-node bmiCalculator.ts"
   },
   "author": "Agney Praseed",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
 }
