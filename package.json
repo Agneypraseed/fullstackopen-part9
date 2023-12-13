@@ -1,0 +1,10 @@
+{
+  "name": "part9",
+  "version": "1.0.0",
+  "description": "FS TypeScript",
+  "main": "index.js",
+  "scripts": {    
+  },
+  "author": "Agney Praseed",
+  "license": "ISC"
+}
