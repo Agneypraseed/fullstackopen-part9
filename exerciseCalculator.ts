@@ -48,7 +48,7 @@ const calculateExercises = (daily_exercise_hours: number[], target: number): Res
     else if (overallRating >= 2 && overallRating < 3) overallDescription = "not too bad but could be better";
     else overallDescription = "Please try harder";
 
-    let result: Result = {
+    const result: Result = {
         periodLength: daily_exercise_hours.length,
         trainingDays: daily_exercise_hours.filter((element) => element !== 0).length,
         success: daily_exercise_hours.every((value) => value >= target),
